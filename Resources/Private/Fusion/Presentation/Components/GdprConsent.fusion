@@ -21,8 +21,8 @@ prototype(Jonnitto.PrettyEmbed:Presentation.GdprConsent) < prototype(Neos.Fusion
                         @if={private.href}
                         x-prettyembedpopup={props.alpineJsValues ? null : private.embedHref}
                         "x-prettyembedpopup.dynamic"={props.alpineJsValues ? private.embedHref : null}
-                        href={props.alpineJsValues ? private.href : null}
-                        :href={props.alpineJsValues ? null : private.href}
+                        href={props.alpineJsValues ? null : private.href}
+                        :href={props.alpineJsValues ? private.href : null}
                         class={BEM.modifier('jonnitto-prettyembed-gdpr__button', 'external')}
                     >
                         {Translation.translate('gdprMessageNewWindow', 'Open in new window', [], 'Main', 'Jonnitto.PrettyEmbedPresentation')}
