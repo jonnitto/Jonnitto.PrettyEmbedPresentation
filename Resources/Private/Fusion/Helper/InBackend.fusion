@@ -1,0 +1,10 @@
+prototype(Jonnitto.PrettyEmbed:InBackend) < prototype(Neos.Fusion:Case) {
+    lowerThanNine {
+        condition = ${Carbon.Version.lowerThanNine()}
+        renderer = ${node.context.inBackend && node.context.currentRenderingMode.edit}
+    }
+    nineAndAbove {
+        condition = true
+        renderer = ${renderingMode.isEdit}
+    }
+}

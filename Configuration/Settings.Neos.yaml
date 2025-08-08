@@ -1,0 +1,13 @@
+Neos:
+  Neos:
+    Ui:
+      resources:
+        javascript:
+          Jonnitto.PrettyEmbed:Metadata:
+            resource: resource://Jonnitto.PrettyEmbedPresentation/Public/Plugin/Metadata.js
+        stylesheets:
+          Jonnitto.PrettyEmbed:Metadata:
+            resource: resource://Jonnitto.PrettyEmbedPresentation/Public/Plugin/Metadata.css
+    fusion:
+      autoInclude:
+        Jonnitto.PrettyEmbedPresentation: true

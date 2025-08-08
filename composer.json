@@ -1,0 +1,36 @@
+{
+    "name": "jonnitto/prettyembedpresentation",
+    "type": "neos-plugin",
+    "license": "GPL-3.0-or-later",
+    "description": "Presentational layer for the PrettyEmbed Series",
+    "keywords": [
+        "flow",
+        "neos",
+        "video",
+        "contentelement"
+    ],
+    "support": {
+        "issues": "https://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation/issues",
+        "source": "https://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation"
+    },
+    "homepage": "https://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation",
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "hello@uhlmann.pro",
+            "homepage": "https://www.uhlmann.pro",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "sitegeist/slipstream": "^2.3",
+        "carbon/fileloader": "^0.1",
+        "carbon/notification": "^2.4 || ^3.0",
+        "carbon/eel": "^2.19"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jonnitto\\PrettyEmbedPresentation\\": "Classes"
+        }
+    }
+}

@@ -1,0 +1,5 @@
+{
+  "ignoreFiles": ["Resources/Public/**", "node_modules/**"],
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-scss"]
+}
