@@ -3,7 +3,7 @@
 namespace Jonnitto\PrettyEmbedPresentation\FusionObjects;
 
 use Jonnitto\PrettyEmbedPresentation\Service\ParseIDService;
-use Jonnitto\PrettyEmbedPresentation\Service\YoutubeService;
+use Jonnitto\PrettyEmbedHelper\Service\YoutubeService;
 use Jonnitto\PrettyEmbedPresentation\Utility\Utility;
 use Neos\Flow\Annotations as Flow;
 use Neos\Fusion\FusionObjects\AbstractFusionObject;
