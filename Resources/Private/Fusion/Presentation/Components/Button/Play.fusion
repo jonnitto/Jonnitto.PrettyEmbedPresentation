@@ -10,7 +10,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Button.Play) < prototype(Neos.Fusion
         content = ${PropTypes.string.isRequired}
     }
 
-    label = ${Translation.translate('play', 'Play', [], 'Main', 'Jonnitto.PrettyEmbedHelper')}
+    label = ${Translation.translate('play', 'Play', [], 'Main', 'Jonnitto.PrettyEmbedPresentation')}
     class = ${BEM.modifier('jonnitto-prettyembed-button', 'play')}
     file = ${Configuration.setting('Jonnitto.PrettyEmbed.button.play')}
     content = ${File.exists(this.file) ? File.readFile(this.file) : null}

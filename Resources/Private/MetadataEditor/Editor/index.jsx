@@ -6,9 +6,7 @@ const neosifier = neos((globalRegistry) => ({
     i18nRegistry: globalRegistry.get('i18n'),
 }));
 
-function Editor(props) {
-    const { value, options, i18nRegistry } = props;
-
+function Editor({ value, options, i18nRegistry }) {
     const array = Object.entries(options)
         .map(([key, labelKey]) => {
             const itemValue = value[key];

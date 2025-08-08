@@ -16,7 +16,7 @@ prototype(Jonnitto.PrettyEmbed:Assets) < prototype(Neos.Fusion:Component) {
     inBackend = Jonnitto.PrettyEmbed:InBackend
 
     renderer = Carbon.FileLoader:Component {
-        package = 'Jonnitto.PrettyEmbedHelper'
+        package = 'Jonnitto.PrettyEmbedPresentation'
         css = ${props.includeAssets.css ? 'Main.css' : null}
         js = ${[props.inBackend ? 'Backend.js' : null, props.debug ? 'Debug.js' : null]}
         mjs = Neos.Fusion:DataStructure {

@@ -1,7 +1,7 @@
 import { loadScript, checkFullscreen } from './Helper';
 
 const eventName = 'prettyembed';
-const hlsScript = '/_Resources/Static/Packages/Jonnitto.PrettyEmbedHelper/Scripts/Hls.js?v=1.5.9';
+const hlsScript = '/_Resources/Static/Packages/Jonnitto.PrettyEmbedPresentation/Scripts/Hls.js?v=1.5.9';
 
 export default function (Alpine) {
     Alpine.directive('prettyembedmedia', (element, { value, modifiers, expression }, { evaluate }) => {

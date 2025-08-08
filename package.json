@@ -1,12 +1,12 @@
 {
-  "name": "jonnitto.prettyembedhelper",
-  "description": "Dependencies for Jonnitto.PrettyEmbedHelper",
+  "name": "jonnitto.prettyembedpresentation",
+  "description": "Dependencies for Jonnitto.PrettyEmbedPresentation",
   "license": "GPL-3.0-or-later",
   "private": true,
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jonnitto/Jonnitto.PrettyEmbedHelper.git"
+    "url": "git://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation.git"
   },
   "dependencies": {
     "alpinejs": "^3.14.9",

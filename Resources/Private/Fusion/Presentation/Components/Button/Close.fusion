@@ -5,7 +5,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Button.Close) < prototype(Neos.Fusio
         content = ${PropTypes.string.isRequired}
     }
 
-    label = ${Translation.translate('close', 'Close', [], 'Main', 'Jonnitto.PrettyEmbedHelper')}
+    label = ${Translation.translate('close', 'Close', [], 'Main', 'Jonnitto.PrettyEmbedPresentation')}
     class = 'jonnitto-prettyembed-lightbox__close'
     content = '&times;'
 
