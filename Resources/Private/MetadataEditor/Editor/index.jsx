@@ -9,10 +9,27 @@ const neosifier = neos((globalRegistry) => ({
 function Editor({ value, options, i18nRegistry }) {
     const array = Object.entries(options)
         .map(([key, labelKey]) => {
-            const itemValue = value[key];
+            let itemValue = value[key];
             if (!itemValue) {
                 return null;
             }
+
+            if (typeof itemValue === 'object' && itemValue?.date && itemValue?.timezone && itemValue?.dateFormat) {
+                // Create ISO Date: "YYYY-MM-DDTHH:mm:ss.sssZ"
+                const isoString = itemValue.date.replace(' ', 'T').split('.')[0] + 'Z';
+                const dateObj = new Date(isoString);
+                itemValue = new Intl.DateTimeFormat(navigator.language, {
+                    timeZone: itemValue.timezone,
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                }).format(dateObj);
+            }
+
+            if (typeof itemValue === 'object') {
+                return null;
+            }
+
             const secondValue = key === 'duration' ? convertSeconds(itemValue) : null;
             return {
                 label: i18nRegistry.translate(labelKey + '.label'),
