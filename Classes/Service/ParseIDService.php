@@ -81,7 +81,7 @@ class ParseIDService
         $url = trim((string) $url);
         if (
             preg_match(
-                '%^https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+)(?:$|\/|\?)(?:[?]?.*)$%im',
+                '%^https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|video\/|)(\d+(?:\/[\w]*)?)(?:$|\/|\?)(?:[?]?.*)$%im',
                 $url,
                 $regs,
             )
