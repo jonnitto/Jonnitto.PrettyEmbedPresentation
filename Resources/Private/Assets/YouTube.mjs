@@ -1,5 +1,13 @@
 import YouTube from './Plugins/YouTube';
 
-window.addEventListener('alpine:init', () => {
+let registered = false;
+const registerPlugin = () => {
+    if (registered) {
+        return;
+    }
     window.Alpine.plugin(YouTube);
-});
+    registered = true;
+};
+
+window.addEventListener('prettyembed:init', registerPlugin);
+window.addEventListener('alpine:init', registerPlugin);

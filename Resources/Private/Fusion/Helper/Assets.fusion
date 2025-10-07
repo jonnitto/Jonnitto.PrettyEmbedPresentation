@@ -19,6 +19,7 @@ prototype(Jonnitto.PrettyEmbed:Assets) < prototype(Neos.Fusion:Component) {
         package = 'Jonnitto.PrettyEmbedPresentation'
         css = ${props.includeAssets.css ? 'Main.css' : null}
         js = ${[props.inBackend ? 'Backend.js' : null, props.debug ? 'Debug.js' : null]}
+        eventOnLoad = ${props.includeAssets.js ? 'prettyembed:init' : null}
         mjs = Neos.Fusion:DataStructure {
             gdprPlugin = ${props.gdprHandling == true ? 'Consent.js' : null}
             magicPlugin = ${props.player == 'Video' || props.player == 'Audio' || props.gdprHandling != 'Popup' ? 'Methods.js' : null}
