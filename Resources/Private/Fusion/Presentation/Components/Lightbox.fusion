@@ -29,6 +29,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Lightbox) < prototype(Neos.Fusion:Co
                 x-cloak
                 "x-on:keydown.escape.window.prevent.stop"="lightbox=false"
                 "x-transition.duration.500ms"
+                x-effect="$dispatch('prettyembed:lightbox',{open:lightbox})"
                 role="dialog"
                 aria-modal="true"
                 class="jonnitto-prettyembed-lightbox"
