@@ -32,7 +32,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Audio) < prototype(Neos.Fusion:Compo
     }
 
     renderer = afx`
-        <Jonnitto.PrettyEmbed:Presenation.Wrapper wrapper={props.wrapper}>
+        <Jonnitto.PrettyEmbed:Presentation.Wrapper wrapper={props.wrapper}>
             <aside
                 x-data
                 x-prettyembedmedia
@@ -54,6 +54,6 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Audio) < prototype(Neos.Fusion:Compo
                     {props.content}
                 </audio>
             </aside>
-        </Jonnitto.PrettyEmbed:Presenation.Wrapper>
+        </Jonnitto.PrettyEmbed:Presentation.Wrapper>
     `
 }

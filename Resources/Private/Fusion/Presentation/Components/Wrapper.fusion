@@ -1,4 +1,4 @@
-prototype(Jonnitto.PrettyEmbed:Presenation.Wrapper) < prototype(Neos.Fusion:Component) {
+prototype(Jonnitto.PrettyEmbed:Presentation.Wrapper) < prototype(Neos.Fusion:Component) {
     wrapper = null
     content = ${value}
 

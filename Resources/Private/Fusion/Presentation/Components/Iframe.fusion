@@ -66,7 +66,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
     }
 
     renderer = afx`
-        <Jonnitto.PrettyEmbed:Presenation.Wrapper wrapper={props.wrapper}>
+        <Jonnitto.PrettyEmbed:Presentation.Wrapper wrapper={props.wrapper}>
             <aside
                 x-data
                 x-prettyembedvimeo={AlpineJS.object({
@@ -146,6 +146,6 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
                     pauseButton={!props.controls}
                 />
             </aside>
-        </Jonnitto.PrettyEmbed:Presenation.Wrapper>
+        </Jonnitto.PrettyEmbed:Presentation.Wrapper>
     `
 }
