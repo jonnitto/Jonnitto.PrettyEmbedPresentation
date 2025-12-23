@@ -9,7 +9,7 @@
     "url": "git://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation.git"
   },
   "dependencies": {
-    "alpinejs": "^3.15.2",
+    "alpinejs": "^3.15.3",
     "hls.js": "^1.6.15"
   },
   "devDependencies": {
@@ -19,7 +19,7 @@
     "autoprefixer": "^10.4.23",
     "clsx": "^2.1.1",
     "cssnano": "^7.1.2",
-    "esbuild": "^0.27.1",
+    "esbuild": "^0.27.2",
     "esbuild-plugin-lightningcss-modules": "^0.1.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
@@ -30,7 +30,7 @@
     "postcss-import": "^16.1.1",
     "postcss-sort-media-queries": "^5.2.0",
     "prettier": "^3.7.4",
-    "sass": "^1.97.0",
+    "sass": "^1.97.1",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
     "stylelint-scss": "^6.13.0"
@@ -53,5 +53,5 @@
     "dev": "pnpm dev:css;pnpm dev:js",
     "start": "pnpm build"
   },
-  "packageManager": "pnpm@10.26.0+sha512.3b3f6c725ebe712506c0ab1ad4133cf86b1f4b687effce62a9b38b4d72e3954242e643190fc51fa1642949c735f403debd44f5cb0edd657abe63a8b6a7e1e402"
+  "packageManager": "pnpm@10.26.1+sha512.664074abc367d2c9324fdc18037097ce0a8f126034160f709928e9e9f95d98714347044e5c3164d65bd5da6c59c6be362b107546292a8eecb7999196e5ce58fa"
 }
