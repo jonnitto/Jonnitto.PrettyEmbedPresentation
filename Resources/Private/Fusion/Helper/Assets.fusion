@@ -9,6 +9,7 @@ prototype(Jonnitto.PrettyEmbed:Assets) < prototype(Neos.Fusion:Component) {
     debug = ${Configuration.setting('Jonnitto.PrettyEmbed.debug')}
     includeAssets = ${Configuration.setting('Jonnitto.PrettyEmbed.includeAssets')}
     includeAlpineJsCheck = ${Configuration.setting('Jonnitto.PrettyEmbed.includeAlpineJsCheck')}
+    cssFile = ${Configuration.setting('Jonnitto.PrettyEmbed.cssFileName')}
 
     // This decides which file to load
     player = null
@@ -17,7 +18,7 @@ prototype(Jonnitto.PrettyEmbed:Assets) < prototype(Neos.Fusion:Component) {
 
     renderer = Carbon.FileLoader:Component {
         package = 'Jonnitto.PrettyEmbedPresentation'
-        css = ${props.includeAssets.css ? 'Main.css' : null}
+        css = ${props.includeAssets.css ? props.cssFile : null}
         js = ${[props.inBackend ? 'Backend.js' : null, props.debug ? 'Debug.js' : null]}
         eventOnLoad = ${props.includeAssets.js ? 'prettyembed:init' : null}
         mjs = Neos.Fusion:DataStructure {

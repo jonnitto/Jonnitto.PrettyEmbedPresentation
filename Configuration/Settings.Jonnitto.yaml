@@ -11,6 +11,9 @@ Jonnitto:
       css: true
       js: true
 
+    # Use layered css file instead of the Main css file
+    cssFileName: 'Main.css'
+
     # Can be `lazy`, `eager` or `null`
     loadImageStrategy: lazy
 
