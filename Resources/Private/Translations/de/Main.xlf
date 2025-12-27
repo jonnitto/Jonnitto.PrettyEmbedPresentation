@@ -52,8 +52,8 @@
                 <target>Es muss eine Video-Stream URL definiert werden.</target>
             </trans-unit>
             <trans-unit id="noAudio" xml:space="preserve">
-                <source>You need to define at least one audio source.</source>
-                <target>Es muss mindestens eine Audio Quelle definiert werden.</target>
+                <source>An audio source must be defined.</source>
+                <target>Es muss eine Audio Quelle definiert werden.</target>
             </trans-unit>
             <trans-unit id="lang" xml:space="preserve">
                 <source>en</source>
