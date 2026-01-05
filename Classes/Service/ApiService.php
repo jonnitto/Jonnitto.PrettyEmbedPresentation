@@ -207,6 +207,9 @@ class ApiService
         // Get the title
         $title = $item['snippet']['title'];
 
+        // Get the author
+        $author = $item['snippet']['channelTitle'] ?? null;
+
         if ($type !== 'short') {
             // Get the dimensions
             $dom = new DOMDocument();
@@ -241,6 +244,7 @@ class ApiService
 
         return [
             'title' => $title,
+            'author' => $author,
             'width' => $width,
             'height' => $height,
             'duration' => $duration,
