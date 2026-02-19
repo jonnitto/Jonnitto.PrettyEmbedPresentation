@@ -89,6 +89,9 @@ function handleRoot({ element, Alpine, options }) {
                     this.loaded = false;
                 },
                 toogle() {
+                    this.toggle();
+                },
+                toggle() {
                     if (this.__media.paused) {
                         this.play();
                         return;
