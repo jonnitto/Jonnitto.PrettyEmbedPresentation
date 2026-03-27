@@ -48,6 +48,8 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
     // Set this to true if poster, aspectRatio, videoID, playlistID, href, embedHref are values from AlpineJS
     alpineJsValues = false
 
+    tagName = ${Configuration.setting('Jonnitto.PrettyEmbed.playerTagName') || 'aside'}
+
     @if {
         checkPlayer = ${this.player == 'YouTube' || this.player == 'Vimeo'}
         checkVimeo = ${this.player == 'Vimeo' ? (this.videoID && this.href && this.embedHref) : true}
@@ -63,39 +65,42 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
             debug = ${props.debug}
         }
         fileLoaderAsAttributes = ${!Type.isString(private.fileLoader)}
+        isVimeo = ${props.player == 'Vimeo'}
+        alpineObject = Neos.Fusion:DataStructure {
+            gdpr = ${props.gdprHandling || null}
+            video = ${props.alpineJsValues ? AlpineJS.expression(props.videoID) : props.videoID}
+            hash = ${props.hash ? (props.alpineJsValues ? AlpineJS.expression(props.hash) : props.hash) : null}
+            hash.@if.set = ${private.isVimeo}
+            color = ${Type.isString(props.color) ? props.color : null}
+            color.@if.set = ${private.isVimeo}
+            playlist = ${props.playlistID ? (props.alpineJsValues ? AlpineJS.expression(props.playlistID) : props.playlistID) : null}
+            playlist.@if.set = ${!private.isVimeo}
+            slim = ${!props.controls || null}
+            style = ${props.lightbox && 'lightbox' || null}
+            loop = ${props.loop || null}
+            noCookie = ${props.useYoutubeNoCookieDomain || null}
+            noCookie.@if.set = ${!private.isVimeo}
+        }
     }
 
-    renderer = afx`
-        <Jonnitto.PrettyEmbed:Presentation.Wrapper wrapper={props.wrapper}>
-            <aside
-                x-data
-                x-prettyembedvimeo={AlpineJS.object({
-                    gdpr: props.gdprHandling || null,
-                    video: props.alpineJsValues ? AlpineJS.expression(props.videoID) : props.videoID,
-                    hash: props.hash ? (props.alpineJsValues ? AlpineJS.expression(props.hash) : props.hash) : null,
-                    color: Type.isString(props.color) ? props.color : null,
-                    slim: !props.controls || null,
-                    style: props.lightbox && 'lightbox' || null,
-                    loop: props.loop || null
-                })}
-                x-prettyembedvimeo.@if={props.player == 'Vimeo' && !private.alwaysOpenInPopup}
-                x-prettyembedyoutube={AlpineJS.object({
-                    gdpr: props.gdprHandling || null,
-                    video: props.videoID ? (props.alpineJsValues ? AlpineJS.expression(props.videoID) : props.videoID) : null,
-                    playlist: props.videoID ? (props.alpineJsValues ? AlpineJS.expression(props.playlistID) : props.playlistID) : null,
-                    slim: !props.controls || null,
-                    style: props.lightbox && 'lightbox' || null,
-                    loop: props.loop || null,
-                    noCookie: props.useYoutubeNoCookieDomain || null
-                })}
-                x-prettyembedyoutube.@if={props.player== 'YouTube' && !private.alwaysOpenInPopup}
-                aria-label={props.label}
-                id={props.id}
-                class={Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', String.toLowerCase(props.player)), props.setAspectRatioClass && 'jonnitto-prettyembed-ratio')}
-                style={props.aspectRatio && !props.alpineJsValues ? '--aspect-ratio:' + props.aspectRatio :  null}
-                :style={props.aspectRatio && props.alpineJsValues ? ("{'--aspect-ratio':" + props.aspectRatio + "}") :  null}
-                {...(private.fileLoaderAsAttributes ? private.fileLoader : {})}
-            >
+    renderer = Jonnitto.PrettyEmbed:Presentation.Wrapper {
+        wrapper = ${props.wrapper}
+        content = Neos.Fusion:Tag {
+            tagName = ${props.tagName}
+            attributes {
+                @apply.props = ${private.fileLoaderAsAttributes ? private.fileLoader : {}}
+                x-data = true
+                x-prettyembedvimeo = ${AlpineJS.object(private.alpineObject)}
+                x-prettyembedvimeo.@if.set = ${private.isVimeo && !private.alwaysOpenInPopup}
+                x-prettyembedyoutube = ${AlpineJS.object(private.alpineObject)}
+                x-prettyembedyoutube.@if.set = ${props.player== 'YouTube' && !private.alwaysOpenInPopup}
+                aria-label = ${props.label}
+                id = ${props.id}
+                class = ${Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', String.toLowerCase(props.player)), props.setAspectRatioClass && 'jonnitto-prettyembed-ratio')}
+                style = ${props.aspectRatio && !props.alpineJsValues ? '--aspect-ratio:' + props.aspectRatio :  null}
+                :style = ${props.aspectRatio && props.alpineJsValues ? ("{'--aspect-ratio':" + props.aspectRatio + "}") :  null}
+            }
+            content = afx`
                 {private.fileLoaderAsAttributes ? '' : private.fileLoader}
                 <Jonnitto.PrettyEmbed:Presentation.Button.Play
                     @if={!private.alwaysOpenInPopup}
@@ -145,7 +150,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
                     playButton={!props.controls}
                     pauseButton={!props.controls}
                 />
-            </aside>
-        </Jonnitto.PrettyEmbed:Presentation.Wrapper>
-    `
+            `
+        }
+    }
 }

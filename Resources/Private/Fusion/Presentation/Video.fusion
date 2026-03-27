@@ -44,6 +44,8 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Video) < prototype(Neos.Fusion:Compo
     // width, height are option AlpineJS values
     alpineJsValues = false
 
+    tagName = ${Configuration.setting('Jonnitto.PrettyEmbed.playerTagName') || 'aside'}
+
     @if.checkVideo = ${(this.poster || this.preview) && (this.content || this.streaming)}
 
     @private {
@@ -76,19 +78,22 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Video) < prototype(Neos.Fusion:Compo
         fileLoaderAsAttributes = ${!Type.isString(private.fileLoader)}
     }
 
-    renderer = afx`
-        <Jonnitto.PrettyEmbed:Presentation.Wrapper wrapper={props.wrapper}>
-            <aside
-                x-data
-                x-prettyembedmedia={!props.streaming && !props.lightbox}
-                "x-prettyembedmedia.lightbox"={!props.streaming && props.lightbox}
-                "x-prettyembedmedia.streaming.lightbox"={props.streaming && props.lightbox}
-                "x-prettyembedmedia.streaming"={props.streaming && !props.lightbox}
-                aria-label={props.label}
-                id={props.id}
-                class={Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', 'video'))}
-                {...(private.fileLoaderAsAttributes ? private.fileLoader : {})}
-            >
+    renderer = Jonnitto.PrettyEmbed:Presentation.Wrapper {
+        wrapper = ${props.wrapper}
+        content = Neos.Fusion:Tag {
+            tagName = ${props.tagName}
+            attributes {
+                @apply.props = ${private.fileLoaderAsAttributes ? private.fileLoader : {}}
+                x-data = true
+                x-prettyembedmedia = ${!props.streaming && !props.lightbox}
+                'x-prettyembedmedia.lightbox' = ${!props.streaming && props.lightbox}
+                'x-prettyembedmedia.streaming.lightbox' = ${props.streaming && props.lightbox}
+                'x-prettyembedmedia.streaming' = ${props.streaming && !props.lightbox}
+                aria-label = ${props.label}
+                id = ${props.id}
+                class = ${Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', 'video'))}
+            }
+            content = afx`
                 {private.fileLoaderAsAttributes ? '' : private.fileLoader}
                 <Jonnitto.PrettyEmbed:Presentation.Preview
                     show={props.lightbox ? null : '!loaded'}
@@ -117,7 +122,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Video) < prototype(Neos.Fusion:Compo
                     pauseButton={!props.controls}
                     content={private.video}
                 />
-            </aside>
-        </Jonnitto.PrettyEmbed:Presentation.Wrapper>
-    `
+            `
+        }
+    }
 }

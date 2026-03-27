@@ -1,5 +1,8 @@
 Jonnitto:
   PrettyEmbed:
+    # Set the tag name which the player is wrapped in
+    playerTagName: aside
+
     # Set this to true for debug output
     debug: false
 
