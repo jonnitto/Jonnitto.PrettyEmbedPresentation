@@ -3,7 +3,6 @@
 namespace Jonnitto\PrettyEmbedPresentation\FusionObjects;
 
 use Jonnitto\PrettyEmbedPresentation\Service\ParseIDService;
-use Jonnitto\PrettyEmbedHelper\Service\YoutubeService;
 use Jonnitto\PrettyEmbedPresentation\Utility\Utility;
 use Neos\Flow\Annotations as Flow;
 use Neos\Fusion\FusionObjects\AbstractFusionObject;
@@ -16,9 +15,6 @@ use function str_replace;
  */
 class ReplaceIframesImplementation extends AbstractFusionObject
 {
-    #[Flow\Inject]
-    protected YoutubeService $youtubeService;
-
     /**
      * @return string
      */
@@ -69,7 +65,7 @@ class ReplaceIframesImplementation extends AbstractFusionObject
             if (!$videoID) {
                 continue;
             }
-            $type = $this->youtubeService->type($url);
+            $type = $this->youtubeType($url);
             $replacement = $this->buildYoutube($videoID, $type);
             $content = str_replace($iframe, $replacement, $content);
         }
@@ -122,5 +118,23 @@ class ReplaceIframesImplementation extends AbstractFusionObject
         $html = $this->runtime->render($this->path . '/itemVimeoRenderer');
         $this->runtime->popContext();
         return $html ?? '';
+    }
+
+    /**
+     * Get the type of YouTube video
+     *
+     * @param string $url
+     * @return string The type of the link
+     */
+    protected function youtubeType(string $url): string
+    {
+        $url = trim($url);
+        if (!$url) {
+            return 'video';
+        }
+        if (strpos($url, 'shorts/') !== false) {
+            return 'short';
+        }
+        return strpos($url, 'list=') !== false ? 'playlist' : 'video';
     }
 }
