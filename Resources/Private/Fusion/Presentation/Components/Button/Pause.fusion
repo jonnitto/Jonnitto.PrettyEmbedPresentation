@@ -15,7 +15,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Button.Pause) < prototype(Neos.Fusio
     renderer = afx`
         <button
             aria-label={props.label}
-            x-on:click="pause"
+            "x-on:click.stop"="pause"
             x-show="playing"
             x-transition
             x-cloak

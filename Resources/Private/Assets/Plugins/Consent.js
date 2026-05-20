@@ -21,6 +21,7 @@ function handleAccept({ element, Alpine }) {
     Alpine.bind(element, {
         '@click'(event) {
             event.preventDefault();
+            event.stopPropagation();
             this.acceptGdpr();
         },
     });

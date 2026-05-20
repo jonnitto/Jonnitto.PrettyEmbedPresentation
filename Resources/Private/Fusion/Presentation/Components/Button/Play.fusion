@@ -21,7 +21,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Button.Play) < prototype(Neos.Fusion
         <a
             @if={props.href}
             x-show={props.show}
-            x-on:click={props.onClick}
+            "x-on:click.stop"={props.onClick}
             x-prettyembedpopup={props.alpineJsValues ? null : props.popup}
             "x-prettyembedpopup.dynamic"={props.alpineJsValues ? props.popup : null}
             x-transition
@@ -37,7 +37,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Button.Play) < prototype(Neos.Fusion
         <button
             @if={!props.href}
             x-show={props.show}
-            x-on:click={props.onClick}
+            "x-on:click.stop"={props.onClick}
             x-prettyembedpopup={props.alpineJsValues ? null : props.popup}
             "x-prettyembedpopup.dynamic"={props.alpineJsValues ? props.popup : null}
             x-transition

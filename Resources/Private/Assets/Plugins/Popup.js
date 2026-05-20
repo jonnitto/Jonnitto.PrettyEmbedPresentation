@@ -20,6 +20,7 @@ export default function (Alpine) {
         Alpine.bind(element, {
             '@click'(event) {
                 event.preventDefault();
+                event.stopPropagation();
                 const href = (hrefExpression ? evaluate(expression) : expression) || elementHref;
                 onClick(ratio, href);
             },
