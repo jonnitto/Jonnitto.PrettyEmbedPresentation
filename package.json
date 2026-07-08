@@ -14,26 +14,26 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@neos-project/neos-ui-extensibility": "^8.4.3",
+    "@neos-project/neos-ui-extensibility": "9.2.0-beta1",
     "@prettier/plugin-php": "^0.25.0",
-    "autoprefixer": "^10.5.0",
+    "autoprefixer": "^10.5.2",
     "clsx": "^2.1.1",
-    "cssnano": "^8.0.1",
-    "esbuild": "^0.28.0",
+    "cssnano": "^8.0.2",
+    "esbuild": "^0.28.1",
     "esbuild-plugin-lightningcss-modules": "^0.1.2",
-    "eslint": "^10.4.0",
+    "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "globals": "^17.6.0",
-    "postcss": "^8.5.15",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.7.0",
+    "postcss": "^8.5.16",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.1",
-    "postcss-sort-media-queries": "^6.6.1",
-    "prettier": "^3.8.3",
-    "sass": "^1.99.0",
-    "stylelint": "^17.11.1",
+    "postcss-sort-media-queries": "^6.6.2",
+    "prettier": "^3.9.4",
+    "sass": "^1.101.0",
+    "stylelint": "^17.14.0",
     "stylelint-config-standard": "^40.0.0",
-    "stylelint-scss": "^7.1.1"
+    "stylelint-scss": "^7.2.0"
   },
   "scripts": {
     "build:css:scss": "sass --no-source-map Resources/Private/Assets:Resources/Public/Styles",
@@ -53,5 +53,5 @@
     "dev": "pnpm dev:css;pnpm dev:js",
     "start": "pnpm build"
   },
-  "packageManager": "pnpm@11.1.3+sha512.c85357fe17ca12dd23dd7071822666dfd7e3cb76fe214e3370b5ea2fb34f2a231185509b63e717f3cd0acb38dd3f8d82bcd5e8172400ae678b70ea4fbed0896d"
+  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
 }
