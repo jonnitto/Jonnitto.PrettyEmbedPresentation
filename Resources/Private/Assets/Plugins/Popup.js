@@ -12,7 +12,9 @@ function onClick(ratio, href) {
 
 export default function (Alpine) {
     Alpine.directive('prettyembedpopup', (element, { modifiers, expression }, { evaluate }) => {
-        const ratioPropertyValue = window.getComputedStyle(element).getPropertyValue('--aspect-ratio') || '16 / 9';
+        const style = window.getComputedStyle(element);
+        const ratioPropertyValue =
+            style.getPropertyValue('--aspect-ratio-player') || style.getPropertyValue('--aspect-ratio') || '16 / 9';
         const { ratio } = evaluate(`{ratio:${ratioPropertyValue}}`);
         const elementHref = element.href;
         const hrefExpression = modifiers.includes('dynamic');

@@ -15,7 +15,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
         loadImageStrategy = ${PropTypes.oneOf(['lazy', 'eager', null, false])}
         aspectRatio = ${PropTypes.anyOf(PropTypes.string, PropTypes.float, PropTypes.integer)}
         setAspectRatioClass = ${PropTypes.boolean}
-        preserveAspectRatio = ${PropTypes.boolean}
+        preserveAspectRatio = ${PropTypes.anyOf(PropTypes.string, PropTypes.boolean)}
         useYoutubeNoCookieDomain = ${PropTypes.boolean}
         fallbackAspectRatio = ${PropTypes.anyOf(PropTypes.string, PropTypes.float, PropTypes.integer)}
         controls = ${PropTypes.boolean}
@@ -42,8 +42,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
     preserveAspectRatio = true
     fallbackAspectRatio = '16 / 9'
     aspectRatio = null
-    aspectRatio.@process.fallback =${value || this.fallbackAspectRatio}
-    setAspectRatioClass = ${this.lightbox && this.preserveAspectRatio ? false : !!this.aspectRatio}
+    setAspectRatioClass = null
 
     // Set this to true if poster, aspectRatio, videoID, playlistID, href, embedHref are values from AlpineJS
     alpineJsValues = false
@@ -58,6 +57,23 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
     }
 
     @private {
+        aspectRatio = ${props.aspectRatio || props.fallbackAspectRatio}
+        lightboxAspectRatioFromImage = ${props.lightbox && (props.preserveAspectRatio == true || props.preserveAspectRatio == 'fromImage')}
+        aspectRatioFromImage = Neos.Fusion:Case {
+            lightboxFromImage {
+                condition = ${private.lightboxAspectRatioFromImage}
+                renderer = ${null}
+            }
+            lightboxWidthCustom {
+                condition = ${props.lightbox && Type.isString(props.preserveAspectRatio)}
+                renderer = ${props.preserveAspectRatio}
+            }
+            inline {
+                condition = true
+                renderer = ${private.aspectRatio}
+            }
+        }
+        setAspectRatioClass = ${props.setAspectRatioClass != null ? !!props.setAspectRatioClass : !private.lightboxAspectRatioFromImage}
         alwaysOpenInPopup = ${props.gdprHandling == 'popup'}
         fileLoader = Jonnitto.PrettyEmbed:Assets {
             player = ${props.player}
@@ -81,6 +97,11 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
             noCookie = ${props.useYoutubeNoCookieDomain || null}
             noCookie.@if.set = ${!private.isVimeo}
         }
+        style = Neos.Fusion:DataStructure {
+            @process.filter = ${Carbon.Array.check(Array.filter(value))}
+            '--aspect-ratio' = ${private.aspectRatioFromImage || null}
+            '--aspect-ratio-player' = ${private.aspectRatio && private.aspectRatioFromImage != private.aspectRatio ? private.aspectRatio : null}
+        }
     }
 
     renderer = Jonnitto.PrettyEmbed:Presentation.Wrapper {
@@ -96,9 +117,9 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
                 x-prettyembedyoutube.@if.set = ${props.player== 'YouTube' && !private.alwaysOpenInPopup}
                 aria-label = ${props.label}
                 id = ${props.id}
-                class = ${Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', String.toLowerCase(props.player)), props.setAspectRatioClass && 'jonnitto-prettyembed-ratio')}
-                style = ${props.aspectRatio && !props.alpineJsValues ? '--aspect-ratio:' + props.aspectRatio :  null}
-                :style = ${props.aspectRatio && props.alpineJsValues ? ("{'--aspect-ratio':" + props.aspectRatio + "}") :  null}
+                class = ${Carbon.String.merge(props.class, BEM.modifier('jonnitto-prettyembed', String.toLowerCase(props.player)), private.setAspectRatioClass && 'jonnitto-prettyembed-ratio')}
+                style = ${!props.alpineJsValues && private.style ? Carbon.String.styles(private.style) : null}
+                :style = ${props.alpineJsValues && private.style ? AlpineJS.object(private.style) :  null}
             }
             content = afx`
                 {private.fileLoaderAsAttributes ? '' : private.fileLoader}
@@ -143,8 +164,8 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
                     controls={props.controls}
                 />
                 <Jonnitto.PrettyEmbed:Presentation.Lightbox
-                    @if={props.lightbox && !private.alwaysOpenInPopup }
-                    aspectRatio={props.aspectRatio}
+                    @if={props.lightbox && !private.alwaysOpenInPopup}
+                    aspectRatio={private.aspectRatio}
                     alpineJsValues={props.alpineJsValues}
                     player={props.player}
                     playButton={!props.controls}
