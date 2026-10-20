@@ -9,31 +9,31 @@
     "url": "git://github.com/jonnitto/Jonnitto.PrettyEmbedPresentation.git"
   },
   "dependencies": {
-    "alpinejs": "^3.15.12",
-    "hls.js": "^1.6.16"
+    "alpinejs": "^3.17.4",
+    "hls.js": "^1.7.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@neos-project/neos-ui-extensibility": "9.2.0-beta1",
     "@prettier/plugin-php": "^0.25.0",
-    "autoprefixer": "^10.5.2",
+    "autoprefixer": "^10.6.1",
     "clsx": "^2.1.1",
-    "cssnano": "^8.0.2",
-    "esbuild": "^0.28.1",
+    "cssnano": "^9.9.0",
+    "esbuild": "^0.28.2",
     "esbuild-plugin-lightningcss-modules": "^0.1.2",
-    "eslint": "^10.6.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "globals": "^17.7.0",
-    "postcss": "^8.5.16",
-    "postcss-cli": "^11.0.1",
-    "postcss-import": "^16.1.1",
-    "postcss-sort-media-queries": "^6.6.2",
-    "prettier": "^3.9.4",
-    "sass": "^1.101.0",
-    "stylelint": "^17.14.0",
+    "eslint-plugin-prettier": "^5.5.7",
+    "globals": "^17.13.0",
+    "postcss": "^8.5.31",
+    "postcss-cli": "^12.0.0",
+    "postcss-import": "^17.0.1",
+    "postcss-sort-media-queries": "^6.7.1",
+    "prettier": "^3.9.10",
+    "sass": "^1.105.2",
+    "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
-    "stylelint-scss": "^7.2.0"
+    "stylelint-scss": "^7.3.0"
   },
   "scripts": {
     "build:css:scss": "sass --no-source-map Resources/Private/Assets:Resources/Public/Styles",
@@ -52,6 +52,5 @@
     "watch": "pnpm watch:css;pnpm watch:js",
     "dev": "pnpm dev:css;pnpm dev:js",
     "start": "pnpm build"
-  },
-  "packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
+  }
 }
