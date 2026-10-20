@@ -41,7 +41,7 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Lightbox) < prototype(Neos.Fusion:Co
                         class.base="jonnitto-prettyembed-lightbox__content"
                         class.ratio={props.aspectRatio ? "jonnitto-prettyembed-ratio" : null}
                         style={props.aspectRatio && !props.alpineJsValues ? '--aspect-ratio:' + props.aspectRatio :  null}
-                        :style={props.aspectRatio && props.alpineJsValues ? ("{'--aspect-ratio':" + props.aspectRatio + "}") :  null}
+                        :style={props.aspectRatio && props.alpineJsValues ? AlpineJS.object({'--aspect-ratio': props.aspectRatio}) :  null}
                     >
                         <Jonnitto.PrettyEmbed:Presentation.YouTubeTarget
                             player={props.player}

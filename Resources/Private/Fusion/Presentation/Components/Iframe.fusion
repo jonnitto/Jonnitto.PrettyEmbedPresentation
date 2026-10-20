@@ -57,7 +57,16 @@ prototype(Jonnitto.PrettyEmbed:Presentation.Iframe) < prototype(Neos.Fusion:Comp
     }
 
     @private {
-        aspectRatio = ${props.aspectRatio || props.fallbackAspectRatio}
+        aspectRatio = Neos.Fusion:Case {
+            aspectRatio {
+                condition = ${props.aspectRatio}
+                renderer = ${props.alpineJsValues ? AlpineJS.expression(props.aspectRatio) : props.aspectRatio}
+            }
+            fallbackAspectRatio {
+                condition = true
+                renderer = ${props.fallbackAspectRatio}
+            }
+        }
         lightboxAspectRatioFromImage = ${props.lightbox && (props.preserveAspectRatio == true || props.preserveAspectRatio == 'fromImage')}
         aspectRatioFromImage = Neos.Fusion:Case {
             lightboxFromImage {
