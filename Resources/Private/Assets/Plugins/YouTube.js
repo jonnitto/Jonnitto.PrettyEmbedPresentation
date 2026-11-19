@@ -62,7 +62,7 @@ function handeleRoot({ element, Alpine, options }) {
             return {
                 ...data,
                 init() {
-                    if (this.ligtbox !== null) {
+                    if (this.lightbox !== null) {
                         this.$watch('lightbox', (value, oldValue) => {
                             if (!value && value !== oldValue) {
                                 this.pause();
