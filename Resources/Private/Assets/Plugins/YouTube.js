@@ -102,11 +102,13 @@ function handeleRoot({ element, Alpine, options }) {
                         player = new YT.Player(target, {
                             ...videoPlayerOptions,
                             events: {
+                                onReady: () => {
+                                    this.loaded = true;
+                                },
                                 onStateChange: ({ data }) => {
                                     setTimeout(() => {
                                         if (data === YT.PlayerState.PLAYING) {
                                             this.$dispatch('prettyembedPauseInternal', element);
-                                            this.loaded = true;
                                             this.playing = true;
                                             this.$dispatch(
                                                 eventName,
